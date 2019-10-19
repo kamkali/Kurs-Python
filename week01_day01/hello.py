@@ -87,3 +87,17 @@ print(rect(4))
 print(rect(2,3))
 
 
+##Cw2 - napisz funkcje ktora sprawdza czy caly string z duzej/malej litery
+
+def is_upper_lower(string):
+    if string.upper() == string:
+        print("Upper")
+    elif string.lower() == string:
+        print("Lower")
+    else:
+        print("None")
+
+
+is_upper_lower("HAHA")
+is_upper_lower('haha')
+is_upper_lower("HaHa")
