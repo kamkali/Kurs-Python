@@ -182,3 +182,15 @@ def for_containers():
 print()
 print()
 for_containers()
+
+
+def print_dict(dictionary=None):
+    if dictionary is None:
+        dictionary = {}
+    for key, value in dictionary.items():
+        print(f"key is {key} and value is {value}")
+
+
+print()
+print("Ex3 - print key and value of dictionary")
+print_dict({'abc': 3, 'def': 5, 'xyz': 10})
