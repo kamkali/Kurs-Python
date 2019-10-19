@@ -191,6 +191,37 @@ def print_dict(dictionary=None):
         print(f"key is {key} and value is {value}")
 
 
+def print_dict2(dictionary):
+    for key, value in dictionary.items():
+        print(f"key is {key} and value is {value}")
+
+
 print()
 print("Ex3 - print key and value of dictionary")
 print_dict({'abc': 3, 'def': 5, 'xyz': 10})
+print_dict()
+
+print()
+print_dict2({'abc': 3, 'def': 5, 'xyz': 10})
+
+
+# print_dict2()
+
+
+def test_args(a, b, c, *d):
+    print(a, type(a))
+    print(b, type(b))
+    print(c, type(c))
+    print(d, type(d))
+
+
+def test_kwargs(a, b, c, **kwargs):
+    print(a, type(a))
+    print(b, type(b))
+    print(c, type(c))
+    print(kwargs, type(kwargs))
+
+
+test_args(1, 2, 4.5, 6, 1, 4)
+print()
+test_kwargs(a=1, b=2, c=3, f='g', d=4.5)
