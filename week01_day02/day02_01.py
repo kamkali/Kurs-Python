@@ -1,3 +1,4 @@
+import sys
 from typing import List, Sequence
 import itertools
 
@@ -127,7 +128,7 @@ def fibonacci_while(n=1):
         f0 = 0
         f1 = 1
         fibonacci_list = [f0, f1]
-        while n-2 > 0:
+        while n - 2 > 0:
             fibonacci_list.append(f0 + f1)
             f0, f1 = f1, f0 + f1
             n -= 1
@@ -151,9 +152,18 @@ def fibonacci_for(n=1):
     return fibonacci_list
 
 
+def draw_rectangle(height=3, width=3):
+    star = '*'
+    for _ in range(height):
+        for _ in range(width):
+            sys.stdout.write(star)
+        print()
+
+
 if __name__ == '__main__':
     print(fibonacci_while(10))
     print(fibonacci_for(10))
+    draw_rectangle(3, 100)
     # print(get_model_colour_unique_ex(models, colors))
     # stars()
     # print(get_list_of_car(models, colors))
