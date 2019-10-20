@@ -109,29 +109,71 @@ def get_models_2_short(list_of_dicts):
 
 
 def get_model_colour_unique_ex(model: List[str], colour: List[str]) -> List[dict]:
-    return [{'model': m, 'color': c.lower()} for m, c in zip(models, colors)]
+    return [{'model': m, 'color': c.lower()} for m, c in zip(model, colour)]
+
+
+def rect(a, b):
+    return a * b
+
+
+def stars():
+    list_of_tuples_or_lists = [(1, 2), (4, 10), [10, 18]]
+    for d in list_of_tuples_or_lists:
+        print(rect(*d))
+
+
+def fibonacci_while(n=1):
+    if n >= 1:
+        f0 = 0
+        f1 = 1
+        fibonacci_list = [f0, f1]
+        while n-2 > 0:
+            fibonacci_list.append(f0 + f1)
+            f0, f1 = f1, f0 + f1
+            n -= 1
+    else:
+        print("Wrong usage! N lower than 1")
+
+    return fibonacci_list
+
+
+def fibonacci_for(n=1):
+    if n >= 1:
+        f0 = 0
+        f1 = 1
+        fibonacci_list = [f0, f1]
+        for _ in range(n - 2):
+            fibonacci_list.append(f0 + f1)
+            f0, f1 = f1, f0 + f1
+    else:
+        print("Wrong usage! N lower than 1")
+
+    return fibonacci_list
 
 
 if __name__ == '__main__':
-    print(get_model_colour_unique_ex(models,colors))
-        # print(get_list_of_car(models, colors))
-        # x = get_list_of_car_operations(models, colors)
-        # print(x)
-        # print(get_models(x))
-        # print(get_models_short(x))
-        # print(get_models_2(x))
-        # print(get_models_2_short(x))
-        # print(get_engine_list2(1.0, 2.3, 0.2))
-        # print_models(models)
-        # print()
-        # print_models_with_number(models)
-        # print_models_with_number2(models)
-        # print()
-        # print_models_with_colors_unique(models, colors)
-        # print_models_with_colors_unique_f(models, colors)
-        # print()
-        # print()
-        # print_models_every_pair(models, colors)
-        # print()
-        # print()
-        # print_models_every_pair2(models, colors)
+    print(fibonacci_while(10))
+    print(fibonacci_for(10))
+    # print(get_model_colour_unique_ex(models, colors))
+    # stars()
+    # print(get_list_of_car(models, colors))
+    # x = get_list_of_car_operations(models, colors)
+    # print(x)
+    # print(get_models(x))
+    # print(get_models_short(x))
+    # print(get_models_2(x))
+    # print(get_models_2_short(x))
+    # print(get_engine_list2(1.0, 2.3, 0.2))
+    # print_models(models)
+    # print()
+    # print_models_with_number(models)
+    # print_models_with_number2(models)
+    # print()
+    # print_models_with_colors_unique(models, colors)
+    # print_models_with_colors_unique_f(models, colors)
+    # print()
+    # print()
+    # print_models_every_pair(models, colors)
+    # print()
+    # print()
+    # print_models_every_pair2(models, colors)
