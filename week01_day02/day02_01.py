@@ -69,18 +69,64 @@ def print_models_every_pair2(models: List[str], colours: List[str]):
         print(f"{m} is {c.lower()}")
 
 
+def get_list_of_car(models: List[str], colors: List[str]):
+    list = []
+    for a, b in zip(models, colors):
+        dictionary = {'model': a, 'color': b.lower()}
+        list.append(dictionary)
+    return list
+
+
+def get_list_of_car_operations(models: List[str], colors: List[str]):
+    list = []
+    for a, b in zip(models, colors):
+        dictionary = {'model': a, 'color': b.lower()}
+        list.append(dictionary)
+    list.sort(key=lambda x: x['model'])
+    return list
+
+
+def get_models(list_of_dicts):
+    list = []
+    for x in list_of_dicts:
+        list.append(x.get('model'))
+    return list
+
+
+def get_models_short(list_of_dicts: List[dict]):
+    return [diction['model'] for diction in list_of_dicts]
+
+
+def get_models_2(list_of_dicts: List[dict]):
+    list = []
+    for i, x in enumerate(list_of_dicts):
+        list.append({'id': i, 'model': x['model']})
+    return list
+
+
+def get_models_2_short(list_of_dicts):
+    return [{'id': i, 'model': d['model']} for i, d in enumerate(list_of_dicts)]
+
+
 if __name__ == '__main__':
-    print(get_engine_list2(1.0, 2.3, 0.2))
-    print_models(models)
-    print()
-    print_models_with_number(models)
-    print_models_with_number2(models)
-    print()
-    print_models_with_colors_unique(models, colors)
-    print_models_with_colors_unique_f(models, colors)
-    print()
-    print()
-    print_models_every_pair(models, colors)
-    print()
-    print()
-    print_models_every_pair2(models, colors)
+    # print(get_list_of_car(models, colors))
+    x = get_list_of_car_operations(models, colors)
+    print(x)
+    print(get_models(x))
+    print(get_models_short(x))
+    print(get_models_2(x))
+    print(get_models_2_short(x))
+    # print(get_engine_list2(1.0, 2.3, 0.2))
+    # print_models(models)
+    # print()
+    # print_models_with_number(models)
+    # print_models_with_number2(models)
+    # print()
+    # print_models_with_colors_unique(models, colors)
+    # print_models_with_colors_unique_f(models, colors)
+    # print()
+    # print()
+    # print_models_every_pair(models, colors)
+    # print()
+    # print()
+    # print_models_every_pair2(models, colors)
