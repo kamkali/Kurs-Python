@@ -139,6 +139,7 @@ def fibonacci_while(n=1):
 
 
 def fibonacci_for(n=1):
+    fibonacci_list = []
     if n >= 1:
         f0 = 0
         f1 = 1
@@ -153,26 +154,24 @@ def fibonacci_for(n=1):
 
 
 def draw_rectangle(height=3, width=3, char='*'):
-    char_pick = {'*': '*', '-': '-', '+': '+', '#': '#','@':'@','$':'$'}
     for _ in range(height):
         for _ in range(width):
-            sys.stdout.write(char_pick.get(char, '*'))
+            sys.stdout.write(char)
         print()
 
 
-def draw_triangle(height=3, width=3,char='*'):
-    char_pick = {'*': '*', '-': '-', '+': '+', '#': '#', '@': '@', '$': '$'}
+def draw_triangle(height=3, char='*'):
     for i in range(height):
-        sys.stdout.write((char_pick.get(char,'*'))*(i+1))
+        sys.stdout.write(char * (i + 1))
         print()
 
 
 if __name__ == '__main__':
     print(fibonacci_while(10))
     print(fibonacci_for(10))
-    draw_rectangle(3, 100,"#")
+    draw_rectangle(3, 100, "-")
     print()
-    draw_triangle(3,10,"*")
+    draw_triangle(3, "*")
     # print(get_model_colour_unique_ex(models, colors))
     # stars()
     # print(get_list_of_car(models, colors))
