@@ -21,15 +21,28 @@ def cars(models, colors):
 
 
 def cars_year(models, colors, year_start):
-    return [f"{color} {model} {year_start+i}" for i, (color, model) in enumerate(zip(colors, models))]
+    return [f"{color} {model} {year_start + i}" for i, (color, model) in enumerate(zip(colors, models))]
+
+
+def check_for_else(x: Sequence):
+    # return max([xi for xi in x if xi % 3 == 0])
+    for xi in x:
+        if xi % 3 == 0:
+            val = xi
+            break
+    else:
+        val = 0
+        print("Nie ma liczby podzielnej przez zero")
+    return val
 
 
 if __name__ == '__main__':
     # print(mean([2, 2]))
     # print(mean2([1, 2, 2, 3]))
 
-    print((mean_sdv([1, 2, 2, 3])))
-    print((2 ** (1 / 2)) / 2)
-    print(cars(models=['Volvo', 'Skoda', 'BMW'], colors=['Red', 'Blue', 'Green', 'Black']))
-    print(cars_year(models=['Volvo', 'Skoda', 'BMW'], colors=['Red', 'Blue', 'Green', 'Black'], year_start=1994))
+    # print((mean_sdv([1, 2, 2, 3])))
+    # print((2 ** (1 / 2)) / 2)
+    # print(cars(models=['Volvo', 'Skoda', 'BMW'], colors=['Red', 'Blue', 'Green', 'Black']))
+    # print(cars_year(models=['Volvo', 'Skoda', 'BMW'], colors=['Red', 'Blue', 'Green', 'Black'], year_start=1994))
 
+    print(check_for_else([2, 4, 6]))
