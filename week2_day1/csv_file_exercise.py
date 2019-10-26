@@ -1,5 +1,6 @@
 from typing import Sequence, List, Dict
 import day1
+import json
 
 
 def print_medals(filename: str = 'ski_jumping_2014_medals.csv'):
@@ -25,6 +26,23 @@ def type_data(list_data: List[Dict]):
         d['Age'], d['Height'], d['Weight'] = int(float(d['Age'])), float(d['Height']), float(d['Weight'])
 
 
+def test_json():
+    data: List[Dict] = read_csv('ski_jumping_2014_medals.csv')
+    type_data(data)
+
+    data_str = json.dumps(data)
+    print(type(data_str), data_str)
+
+    data2 = json.loads(data_str)
+    print(type(data2), data2)
+
+    with open("json_data.json", 'w') as f:
+        json.dump(data, f)
+
+    with open("json_data.json", 'r') as f:
+        json.load(f)
+
+
 if __name__ == '__main__':
     # print_medals()
     data = read_csv()
@@ -36,3 +54,12 @@ if __name__ == '__main__':
     h_mean = round(h_mean[0], 2), round(h_mean[1], 2)
     print(h_mean)
     # read_csv('ski_jumping_2014_medals_extended.csv')
+
+    data_str = str(data).replace("'", '"')
+    with open("json_example.json", 'w') as f:
+        f.write(data_str)
+
+    # with open("json_example2.json", 'w') as f:
+    #     f.write(json.)
+
+    test_json()
