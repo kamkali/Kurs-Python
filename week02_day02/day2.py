@@ -54,6 +54,11 @@ def remove_column_no_duplicate(input_list: List[Dict], key):
         data.pop(key)
 
 
+def remove_column_dict(input_dict, key):
+    for d in input_dict:  # --> dostaje liste
+        remove_column_no_duplicate(d, key=key)
+
+
 def str_to_float(input_data: str):
     return float(input_data) if input_data != '' else None
 
@@ -79,6 +84,78 @@ def type_data_simply(list_data: List[Dict]):
         d['Year'] = str_to_int(d['Year'])
         d['Height'] = str_to_float(d['Height'])
         d['Weight'] = str_to_float(d['Weight'])
+
+
+def result_per_country(input_list: List[Dict], year: int):
+    new_dict = {}
+    type_data_simply(input_list)
+    filtered_list = filter_records(input_list, key='Year', value=year)
+    unique_country_keys = get_unique2(filtered_list, 'Team')
+
+    for d in unique_country_keys:
+        new_dict[d] = [record for record in filtered_list if record['Team'] == d]
+
+    # with open('results_per_country.yaml', 'w') as f:
+    #     f.write(yaml.dump(new_dict))
+
+    return new_dict
+
+
+def get_podium(input_list: List[Dict]):
+    return [{'Medal': team['Medal'], 'Name': team['Name']} for team in input_list if team['Medal'] != '']
+
+
+def get_medal_result(input_list: List[Dict]):
+    team_score = 0
+    bronze, silver, gold = 1, 3, 5
+    for score in input_list:
+        if score['Medal'] == 'Gold':
+            team_score += gold
+        elif score['Medal'] == 'Silver':
+            team_score += silver
+        else:
+            team_score += bronze
+    return team_score
+
+
+def medals_per_team(input_dict):
+    medals_per_single_team = {}
+    for team, result in input_dict.items():
+        people_on_the_podium = get_podium(result)
+        medals_per_single_team[team] = {'Podium': people_on_the_podium, 'Score': get_medal_result(people_on_the_podium)}
+
+    # with open('podium_tmp.yaml', 'w') as f:
+    #     f.write(yaml.dump(medals_per_single_team))
+
+    # print(medals_per_single_team)
+    return medals_per_single_team
+
+
+def sort_teams(input_medal_dict):
+    result = [{'Team': key, 'Score': value['Score'], 'Podium': value['Podium']}
+              for key, value in input_medal_dict.items()]
+    result.sort(key=lambda x: x['Score'], reverse=True)
+    return result
+
+
+# def sorting_key(element):
+#     return element['Score']
+#
+#
+# def sort_teams(input_medals_per_team):
+#     result = [{'Team': key, 'Score': value['Score'], 'Podium': value['Podium']}
+#               for key, value in input_medals_per_team.items()]
+#     result.sort(key=sorting_key, reverse=True)
+#     return result
+
+
+def find_best_team(data: List[Dict], year):
+    result_per_team = result_per_country(data, year=year)
+    medals_in_team = medals_per_team(result_per_team)
+    result = sort_teams(medals_in_team)
+
+    with open("team_sorted_result.yaml", 'w') as f:
+        f.write(yaml.dump(result))
 
 
 if __name__ == '__main__':
@@ -108,9 +185,9 @@ if __name__ == '__main__':
     # print(yaml.dump(list(unique_country)), len(unique_country))
     # print(unique_country)
 
-    remove_data = read_csv(filename='box_since_2000.csv')
-    remove_data = remove_column(remove_data, key="Sport")
-    save_csv(remove_data, filename="box_since_2000_simple.csv", sep=';')
+    removed_data = read_csv(filename='box_since_2000.csv')
+    removed_data = remove_column(removed_data, key="Sport")
+    save_csv(removed_data, filename="box_since_2000_simple.csv", sep=';')
 
     # remove_data2 = read_csv(filename='box_since_2000.csv')
     # remove_data2 = remove_column(remove_data2, key="Sport")
@@ -118,5 +195,9 @@ if __name__ == '__main__':
 
     # type_data(remove_data)
     # print(remove_data)
-    type_data_simply(remove_data)
-    print(remove_data)
+    # type_data_simply(remove_data)
+    # print(remove_data)
+    # per_country = result_per_country(removed_data, 2016)
+    # medals = medals_per_team(per_country)
+    # sort_teams(medals)
+    find_best_team(removed_data, 2016)
