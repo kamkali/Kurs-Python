@@ -128,31 +128,24 @@ def medals_per_team(input_dict):
     medals_per_single_team = {}
     for team, result in input_dict.items():
         people_on_the_podium = get_podium(result)
-        medals_per_single_team[team] = {'Podium': people_on_the_podium, 'Score': get_medal_result_simply(people_on_the_podium)}
+        medals_per_single_team[team] = {'Podium': people_on_the_podium,
+                                        'Score': get_medal_result_simply(people_on_the_podium)}
 
     # with open('podium_tmp.yaml', 'w') as f:
     #     f.write(yaml.dump(medals_per_single_team))
 
-    # print(medals_per_single_team)
     return medals_per_single_team
 
+
+# def sorting_key(element):
+#     return element['Score']
 
 def sort_teams(input_medal_dict):
     result = [{'Team': key, 'Score': value['Score'], 'Podium': value['Podium']}
               for key, value in input_medal_dict.items()]
     result.sort(key=lambda x: x['Score'], reverse=True)
+    #     result.sort(key=sorting_key, reverse=True)
     return result
-
-
-# def sorting_key(element):
-#     return element['Score']
-#
-#
-# def sort_teams(input_medals_per_team):
-#     result = [{'Team': key, 'Score': value['Score'], 'Podium': value['Podium']}
-#               for key, value in input_medals_per_team.items()]
-#     result.sort(key=sorting_key, reverse=True)
-#     return result
 
 
 def find_best_team(data: List[Dict], year):
@@ -182,9 +175,9 @@ if __name__ == '__main__':
     #
     # print(diction)
 
-    # data: List[Dict] = read_csv('athlete_events_since_2000.csv', c=';')
-    # data = filter_records(data, key='Sport', value='Boxing')
-    # save_csv(data, filename='box_since_2000.csv', sep=';')
+    data: List[Dict] = read_csv('athlete_events_since_2000.csv', c=';')
+    data = filter_records(data, key='Sport', value='Boxing')
+    save_csv(data, filename='box_since_2000.csv', sep=';')
 
     country_data = read_csv(filename='box_since_2000.csv')
     unique_country = get_unique2(country_data, key="Team")
@@ -201,9 +194,12 @@ if __name__ == '__main__':
 
     # type_data(remove_data)
     # print(remove_data)
+
     # type_data_simply(remove_data)
     # print(remove_data)
+
     # per_country = result_per_country(removed_data, 2016)
     # medals = medals_per_team(per_country)
     # sort_teams(medals)
+
     find_best_team(removed_data, 2016)
