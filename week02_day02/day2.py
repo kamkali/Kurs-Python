@@ -26,13 +26,18 @@ def save_csv(input_data: List[Dict], filename, sep):
             f.write(sep.join(values) + "\n")
 
 
-if __name__ == '__main__':
-    data: List[Dict] = read_csv('athlete_events_since_2000.csv', c=';')
-    data = filter_records(data, key='Sport', value='Boxing')
-    save_csv(data, filename='box_since_2000.csv', sep=';')
-    # print(yaml.dump(data[1:5]))
-    save_csv(input_data=[{'x': '5', 'y': '6'}, {'y': '6', 'x': '5'}], filename='test.csv', sep=';')
+def get_unique(input_data, key):
+    unique_set = set()
+    for record in input_data:
+        unique_set.add(record[key])
+    return unique_set
 
+
+def get_unique2(input_data, key):
+    return set([record[key] for record in input_data])
+
+
+if __name__ == '__main__':
     # first_name = ['Kamil', 'Kuba', 'Pawel', 'Szymon', 'Ania', 'Agata', 'Ewa', 'Damian', 'Maryla', 'Asia']
     # ages = [25, 31, 44, 55, 67, 11, 23, 87, 99, 21]
     # height = [186.0, 172.0, 185.0, 182.0, 164.0, 172.0, 176.0, 176.0, 173.0, 165.0]
@@ -49,3 +54,13 @@ if __name__ == '__main__':
     #     d['First Name'] = d['First Name'].lower()
     #
     # print(diction)
+
+    # data: List[Dict] = read_csv('athlete_events_since_2000.csv', c=';')
+    # data = filter_records(data, key='Sport', value='Boxing')
+    # save_csv(data, filename='box_since_2000.csv', sep=';')
+
+    country_data = read_csv(filename='box_since_2000.csv')
+    unique_country = get_unique2(country_data, key="Team")
+    print(yaml.dump(list(unique_country)), len(unique_country))
+    print(unique_country)
+    print(globals())
