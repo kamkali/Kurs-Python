@@ -37,6 +37,50 @@ def get_unique2(input_data, key):
     return set([record[key] for record in input_data])
 
 
+def remove_column(input_list: List[Dict], key) -> List[Dict]:
+    new_list = []
+    for record in input_list:
+        record.pop(key)
+        new_list.append(record)
+    return new_list
+
+
+def remove_column2(input_list: List[Dict], key) -> List[Dict]:
+    return [record.pop(key) for record in input_list]
+
+
+def remove_column_no_duplicate(input_list: List[Dict], key):
+    for data in input_list:
+        data.pop(key)
+
+
+def str_to_float(input_data: str):
+    return float(input_data) if input_data != '' else None
+
+
+def str_to_int(input_data: str):
+    data_float = str_to_float(input_data)
+    return int(data_float) if data_float is not None else None
+
+
+def type_data(list_data: List[Dict]):
+    for d in list_data:
+        d['ID'] = int(d['ID']) if d['ID'] != '' else None
+        d['Age'] = int(float(d['Age'])) if d['Age'] != '' else None
+        d['Year'] = int(float(d['Year'])) if d['Year'] != '' else None
+        d['Height'] = float(d['Height']) if d['Height'] != '' else None
+        d['Weight'] = float(d['Weight']) if d['Weight'] != '' else None
+
+
+def type_data_simply(list_data: List[Dict]):
+    for d in list_data:
+        d['ID'] = str_to_int(d['ID'])
+        d['Age'] = str_to_int(d['Age'])
+        d['Year'] = str_to_int(d['Year'])
+        d['Height'] = str_to_float(d['Height'])
+        d['Weight'] = str_to_float(d['Weight'])
+
+
 if __name__ == '__main__':
     # first_name = ['Kamil', 'Kuba', 'Pawel', 'Szymon', 'Ania', 'Agata', 'Ewa', 'Damian', 'Maryla', 'Asia']
     # ages = [25, 31, 44, 55, 67, 11, 23, 87, 99, 21]
@@ -61,6 +105,18 @@ if __name__ == '__main__':
 
     country_data = read_csv(filename='box_since_2000.csv')
     unique_country = get_unique2(country_data, key="Team")
-    print(yaml.dump(list(unique_country)), len(unique_country))
-    print(unique_country)
-    print(globals())
+    # print(yaml.dump(list(unique_country)), len(unique_country))
+    # print(unique_country)
+
+    remove_data = read_csv(filename='box_since_2000.csv')
+    remove_data = remove_column(remove_data, key="Sport")
+    save_csv(remove_data, filename="box_since_2000_simple.csv", sep=';')
+
+    # remove_data2 = read_csv(filename='box_since_2000.csv')
+    # remove_data2 = remove_column(remove_data2, key="Sport")
+    # save_csv(remove_data2, filename="box_since_2000_simple_2.csv", sep=';')
+
+    # type_data(remove_data)
+    # print(remove_data)
+    type_data_simply(remove_data)
+    print(remove_data)
