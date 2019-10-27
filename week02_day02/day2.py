@@ -118,11 +118,17 @@ def get_medal_result(input_list: List[Dict]):
     return team_score
 
 
+def get_medal_result_simply(input_list: List[Dict]):
+    score_multiplier = {'Bronze': 1, 'Silver': 3, 'Gold': 5}
+    list_of_scores = [score_multiplier.get(person['Medal']) for person in input_list]
+    return sum(list_of_scores)
+
+
 def medals_per_team(input_dict):
     medals_per_single_team = {}
     for team, result in input_dict.items():
         people_on_the_podium = get_podium(result)
-        medals_per_single_team[team] = {'Podium': people_on_the_podium, 'Score': get_medal_result(people_on_the_podium)}
+        medals_per_single_team[team] = {'Podium': people_on_the_podium, 'Score': get_medal_result_simply(people_on_the_podium)}
 
     # with open('podium_tmp.yaml', 'w') as f:
     #     f.write(yaml.dump(medals_per_single_team))
