@@ -17,19 +17,21 @@ def filter_records(input_data, key, value) -> List[Dict]:
     return [d for d in input_data if d[key] == value]
 
 
-def save_csv(data: List[Dict], filename, sep):
+def save_csv(input_data: List[Dict], filename, sep):
     with open(filename, 'w') as f:
-        f.write(sep.join(data[0].keys())+"\n")
-        for record in data:
-            f.write(sep.join(record.values()))
-            f.write("\n")
+        keys = input_data[0].keys()
+        f.write(sep.join(keys) + "\n")
+        for record in input_data:
+            values = [str(record[key]) for key in keys]
+            f.write(sep.join(values) + "\n")
 
 
 if __name__ == '__main__':
     data: List[Dict] = read_csv('athlete_events_since_2000.csv', c=';')
     data = filter_records(data, key='Sport', value='Boxing')
     save_csv(data, filename='box_since_2000.csv', sep=';')
-    print(yaml.dump(data[1:5]))
+    # print(yaml.dump(data[1:5]))
+    save_csv(input_data=[{'x': '5', 'y': '6'}, {'y': '6', 'x': '5'}], filename='test.csv', sep=';')
 
     # first_name = ['Kamil', 'Kuba', 'Pawel', 'Szymon', 'Ania', 'Agata', 'Ewa', 'Damian', 'Maryla', 'Asia']
     # ages = [25, 31, 44, 55, 67, 11, 23, 87, 99, 21]
