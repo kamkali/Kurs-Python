@@ -21,8 +21,20 @@ class Character:
         self.is_alive = True
         Character.number_of_alive_characters += 1
 
+    def set_position_x(self, x_):
+        self.position.x = x_
+
+    def set_position_y(self, y_):
+        self.position.y = y_
+
     def set_position(self, pos_x, pos_y):
         self.position = Position(pos_x, pos_y)
+
+    def get_position_x(self):
+        return self.position.x
+
+    def get_position_y(self):
+        return self.position.y
 
     def get_position(self):
         return self.position
