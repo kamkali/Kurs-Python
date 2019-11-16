@@ -85,6 +85,7 @@ class RectangleInSpace:
 
 
 def class_testing():
+    pass
     # print(MyClass)
     # my_object = MyClass()
     # print(my_object.first_param)
