@@ -110,7 +110,7 @@ def vector_test():
     print(v5)
 
     plot = PlotVector2D()
-    plot.set_plot_v2d([v1])
+    plot.set_plot_v2d([v4, v5])
 
     # v6 = v1 + (5, 1)
     # print(v6)
