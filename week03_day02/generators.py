@@ -43,6 +43,31 @@ def test_generator():
         print(single_dict)
 
 
+def my_enumerate(to_enum, start=0):
+    i = start
+    for element in to_enum:
+        yield i, element
+        i += 1
+
+
+def restrict(data, end):
+    for d in data:
+        if end != 0:
+            yield d
+            end -= 1
+
+
+def test_my_enum():
+    colors = ['white', 'black', 'red', 'blue', 'yellow']
+
+    # for i, c in my_enumerate(colors, 7):
+    #     print(i, c)
+
+    for c in restrict(colors, 3):
+        print(c)
+
+
 if __name__ == '__main__':
     # test_range()
-    test_generator()
+    # test_generator()
+    test_my_enum()
