@@ -3,6 +3,8 @@ import time
 
 ENABLE_WRAPPER = True
 
+GLOBAL_TIME = time.ctime(time.time())
+
 
 def simple_wrapper(func):
     @functools.wraps(func)
@@ -23,29 +25,6 @@ def my_fun():
     print("Haha")
 
 
-def time_wrapper(func):
-    @functools.wraps(func)
-    def wraps(*args, **kwargs):
-        start_time = time.time()
-
-        fun_result = func(*args, **kwargs)
-
-        end_time = time.time() - start_time
-        print('Time elapsed: ', end_time, 's')
-        return fun_result
-
-    if ENABLE_WRAPPER:
-        return wraps
-    else:
-        return func
-
-
-@time_wrapper
-def long_func():
-    for i in range(10 ** 8):
-        i *= 2
-
-
 def wrapper_with_message(message):
     def proper_wrapper(func):
         @functools.wraps(func)
@@ -59,9 +38,36 @@ def wrapper_with_message(message):
     return proper_wrapper
 
 
+def time_wrapper(filename):
+    def save_wrapper(func):
+        @functools.wraps(func)
+        def wraps(*args, **kwargs):
+            with open(filename, 'a+') as f:
+                f.write('function,time,' + GLOBAL_TIME + '\n')
+
+                start_time = time.time()
+
+                fun_result = func(*args, **kwargs)
+
+                end_time = time.time() - start_time
+                f.write(func.__qualname__ + ',' + str(end_time) + '\n')
+                return fun_result
+
+        return wraps
+
+    return save_wrapper
+
+
 @wrapper_with_message(message="Hello")
+@time_wrapper(filename='times.csv')
 def multiply(x, y):
     return x * y
+
+
+@time_wrapper(filename='times.csv')
+def long_func():
+    for i in range(10 ** 8):
+        i *= 2
 
 
 def test_wrapper():
@@ -72,6 +78,7 @@ def test_wrapper():
     # print('Czas', dtime, 's')
 
     print(multiply(2, 3))
+    long_func()
 
 
 ########################################################
