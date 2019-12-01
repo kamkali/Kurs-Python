@@ -1,3 +1,5 @@
 */.idea/*
 __pycache__
 python_course/
+*.csv
+*.yaml
