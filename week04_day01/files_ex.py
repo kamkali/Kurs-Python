@@ -3,6 +3,8 @@
     3. W odpowiednim folderze utwórz osobny plik json dla każdego kraju """
 import os
 import json
+import pathlib
+import shutil
 
 
 def read_csv_games(filename='box_since_2000.csv'):
@@ -36,7 +38,20 @@ def save_yaml(data, root_dir):
         f.write(f'- {json.dumps(data)}\n')
 
 
+def copy_refactor_name():
+    path = 'games/'
+    os.makedirs(path + '_ALL_/', exist_ok=True)
+    for directory in os.listdir(path):
+        dirpath = os.path.join(path, directory)
+        for file in os.listdir(dirpath):
+            filepath = os.path.join(dirpath, file)
+            pathparts = pathlib.Path(filepath).parts
+            newpath = pathparts[-3] + '/_ALL_/' + pathparts[-1][:-5].lower() + '_' + pathparts[-2].replace(' ', '_') + '.yaml'
+            shutil.copy2(filepath, newpath)
+
+
 if __name__ == '__main__':
     # for r in read_csv():
     # print(r)
-    mkdirs_with_game()
+    # mkdirs_with_game()
+    copy_refactor_name()
