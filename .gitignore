@@ -3,3 +3,4 @@ __pycache__
 python_course/
 *.csv
 *.yaml
+*.html
