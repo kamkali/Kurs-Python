@@ -26,6 +26,7 @@ def pandas_test():
 def pandas_plotly():
     df = pd.read_csv('athlete_events_since_2000.csv', sep=';')
 
+    df = df[df['Year'] > 2000]
     df_ski_results = df[df['Event'].str.contains("Ski Jumping Men's")].dropna()
 
     team_labels = df_ski_results['Team'].unique()
