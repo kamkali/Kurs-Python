@@ -28,15 +28,12 @@ def pesel_info(pesel_nr: str):
         calculated_fcs = 0
         wage = [9, 7, 3, 1]
         pesel_nr = pesel_nr[:-1]
-        i = 0
-        for num in pesel_nr:
-            calculated_fcs += int(num) * wage[i]
-            i = i + 1 if i < 3 else 0
+        for i, num in enumerate(pesel_nr):
+            calculated_fcs += int(num) * wage[i % len(wage)]
         return calculated_fcs % 10
 
     def find_sex(series_nr: str):
-        female_sex = [0, 2, 4, 6, 8]
-        return "F" if int(series_nr[-1]) in female_sex else "M"
+        return "F" if int(series_nr[-1]) % 2 == 0 else "M"
 
     def format_bith_date(birth_date: str):
         year = birth_date[0:2]
@@ -57,4 +54,4 @@ def pesel_info(pesel_nr: str):
 
 if __name__ == '__main__':
     # print(fibonacci(19))
-    print(pesel_info('98250710932'))
+    print(pesel_info('04211725639'))
