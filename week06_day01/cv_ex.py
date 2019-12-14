@@ -60,7 +60,7 @@ def webcam():
         for frame in get_frames(cam):
 
             # credits: https://www.codemade.io/fast-and-accurate-face-tracking-in-live-video-with-python/
-            frame = imutils.resize(frame, width=700)
+            frame = imutils.resize(frame, width=800)
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             overlay = frame.copy()
             output = frame.copy()
