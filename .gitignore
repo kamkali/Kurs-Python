@@ -4,3 +4,6 @@ python_course/
 *.csv
 *.yaml
 *.html
+*.pdf
+*.sqlite3
+.idea
