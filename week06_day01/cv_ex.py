@@ -64,7 +64,7 @@ def webcam():
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             overlay = frame.copy()
             output = frame.copy()
-            alpha = 0.5
+            alpha = 0.8
             face_rects = detector(gray, 0)
             for i, d in enumerate(face_rects):
                 x1, y1, x2, y2, w, h = d.left(), d.top(), d.right() + 1, d.bottom() + 1, d.width(), d.height()
