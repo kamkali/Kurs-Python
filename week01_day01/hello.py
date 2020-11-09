@@ -203,8 +203,6 @@ print_dict()
 
 print()
 print_dict2({'abc': 3, 'def': 5, 'xyz': 10})
-
-
 # print_dict2()
 
 

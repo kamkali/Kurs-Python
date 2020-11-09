@@ -15,7 +15,7 @@ class Character:
         self.HP = 100
         self.position = Position(0, 0)
         self.level = 1
-        # tmp str
+        # tmp strength
         self.str = self.level * 10
         self.defence = self.level * 4
         self.is_alive = True

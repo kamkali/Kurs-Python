@@ -1,5 +1,6 @@
 from typing import Sequence
 
+
 def write_to_file_stupid_way():
     f = open('test_file.txt', 'w')
     f.write("TestTest")

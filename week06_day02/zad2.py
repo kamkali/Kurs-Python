@@ -32,6 +32,7 @@ def create_hist(data):
 
 def change(text, filename_to_save):
     data = create_hist(text)
+    print(data)
     count_list = [{'letter': key, 'count': value} for key, value in data.items()]
     count_list.sort(key=lambda c: c['count'], reverse=True)
 

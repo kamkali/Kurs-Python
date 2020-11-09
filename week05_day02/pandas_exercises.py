@@ -37,10 +37,8 @@ def pandas_plotly():
     for team in team_labels:
         team_dict[team] = [
             {"Count": df_ski_results[df_ski_results['Team'] == team].shape[0],
-             "Bronze": df_ski_results[(df_ski_results['Team'] == team) & (df_ski_results['Medal'] == 'Bronze')].shape[
-                 0],
-             "Silver": df_ski_results[(df_ski_results['Team'] == team) & (df_ski_results['Medal'] == 'Silver')].shape[
-                 0],
+             "Bronze": df_ski_results[(df_ski_results['Team'] == team) & (df_ski_results['Medal'] == 'Bronze')].shape[0],
+             "Silver": df_ski_results[(df_ski_results['Team'] == team) & (df_ski_results['Medal'] == 'Silver')].shape[0],
              "Gold": df_ski_results[(df_ski_results['Team'] == team) & (df_ski_results['Medal'] == 'Gold')].shape[0]}
         ]
 

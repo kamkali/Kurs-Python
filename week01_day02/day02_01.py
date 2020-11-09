@@ -41,7 +41,7 @@ def print_models_with_number2(models):
 
 
 # wrong
-def print_models_with_colors_unique(models: str, colours='') -> str:
+def print_models_with_colors_unique(models: str, colours=''):
     for a, b in zip(models, colours):
         print(a + " is " + b.lower())
 
@@ -61,7 +61,7 @@ def print_models_every_pair(models: List[str], colours: List[str]):
 
 def print_models_every_pair(models: List[str], colours: List[str]):
     for x in models:
-        for y in colors:
+        for y in colours:
             print(f"{x} : {y.lower()}")
 
 
@@ -172,26 +172,26 @@ if __name__ == '__main__':
     draw_rectangle(3, 100, "-")
     print()
     draw_triangle(3, "*")
-    # print(get_model_colour_unique_ex(models, colors))
-    # stars()
-    # print(get_list_of_car(models, colors))
-    # x = get_list_of_car_operations(models, colors)
-    # print(x)
-    # print(get_models(x))
-    # print(get_models_short(x))
-    # print(get_models_2(x))
-    # print(get_models_2_short(x))
-    # print(get_engine_list2(1.0, 2.3, 0.2))
-    # print_models(models)
-    # print()
-    # print_models_with_number(models)
-    # print_models_with_number2(models)
-    # print()
-    # print_models_with_colors_unique(models, colors)
-    # print_models_with_colors_unique_f(models, colors)
-    # print()
-    # print()
-    # print_models_every_pair(models, colors)
-    # print()
-    # print()
-    # print_models_every_pair2(models, colors)
+    print(get_model_colour_unique_ex(models, colors))
+    stars()
+    print(get_list_of_car(models, colors))
+    x = get_list_of_car_operations(models, colors)
+    print(x)
+    print(get_models(x))
+    print(get_models_short(x))
+    print(get_models_2(x))
+    print(get_models_2_short(x))
+    print(get_engine_list2(1.0, 2.3, 0.2))
+    print_models(models)
+    print()
+    print_models_with_number(models)
+    print_models_with_number2(models)
+    print()
+    print_models_with_colors_unique(models, colors)
+    print_models_with_colors_unique_f(models, colors)
+    print()
+    print()
+    print_models_every_pair(models, colors)
+    print()
+    print()
+    print_models_every_pair2(models, colors)
